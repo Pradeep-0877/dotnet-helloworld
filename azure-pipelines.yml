@@ -34,7 +34,7 @@ stages:
             ls
       - task: CopyFiles@2
         inputs:
-          Contents: 'artifact/*.sln'
+          Contents: 'artifact/*.zip'
           TargetFolder: '$(build.artifactstagingdirectory)'
       - task: PublishBuildArtifacts@1
         inputs:
