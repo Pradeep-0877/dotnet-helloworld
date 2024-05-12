@@ -30,9 +30,11 @@ stages:
           script: |
             ls
             pwd
+            cd artifact
+            ls
       - task: CopyFiles@2
         inputs:
-          Contents: 'artifact'
+          Contents: 'artifact/*.sln'
           TargetFolder: '$(build.artifactstagingdirectory)'
       - task: PublishBuildArtifacts@1
         inputs:
