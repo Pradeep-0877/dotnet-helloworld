@@ -20,5 +20,23 @@ stages:
           command: 'build'
           projects: '*.sln'
 
-
+      - task: DotNetCoreCLI@2
+        inputs:
+          command: 'publish'
+          publishWebProjects: true
+          arguments: '--output artifact'
+      - task: CmdLine@2
+        inputs:
+          script: |
+            ls
+            pwd
+      - task: CopyFiles@2
+        inputs:
+          Contents: 'artifact'
+          TargetFolder: '$(build.artifactstagingdirectory)'
+      - task: PublishBuildArtifacts@1
+        inputs:
+          PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+          ArtifactName: 'drop'
+          publishLocation: 'Container'
 
